@@ -1,19 +1,20 @@
+import { useDispatch } from 'react-redux';
 import styles from './Filter.module.css';
-import PropTypes from 'prop-types';
 
-export const Filter = ({ handleFilter }) => {
+import { setFilter } from 'Redux/createSlice';
+
+export const Filter = () => {
+  const dispatch = useDispatch();
   return (
     <div className={styles.filterContainer}>
       <h3 className={styles.title}>Find contacts by name</h3>
       <input
+        type="text"
+        name="filter"
         className={styles.input}
         placeholder="Find contact"
-        onChange={handleFilter}
+        onChange={event => dispatch(setFilter(event.target.value))}
       ></input>
     </div>
   );
-};
-
-Filter.propTypes = {
-  handleFilter: PropTypes.func.isRequired,
 };
